@@ -1,0 +1,23 @@
+[project]
+name = "kaburobo"
+version = "0.1.0"
+description = "株式自動売買ロボット（カブロボ）"
+requires-python = ">=3.10"
+dependencies = ["pandas>=2.0", "numpy>=1.24"]
+
+[project.optional-dependencies]
+yahoo = ["yfinance>=0.2"]
+dev = ["pytest>=7"]
+
+[project.scripts]
+kaburobo = "kaburobo.cli:main"
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["kaburobo"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

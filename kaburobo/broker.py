@@ -71,8 +71,11 @@ class PaperBroker(Broker):
             raise ValueError(f"不明な売買区分: {order.side}")
         self.history.append(asdict(order))
 
+    def to_json(self) -> str:
+        return json.dumps(asdict(self), ensure_ascii=False, indent=2)
+
     def save(self, path: str | Path) -> None:
-        Path(path).write_text(json.dumps(asdict(self), ensure_ascii=False, indent=2))
+        Path(path).write_text(self.to_json())
 
     @classmethod
     def load(cls, path: str | Path) -> PaperBroker:
